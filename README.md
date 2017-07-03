@@ -14,7 +14,7 @@ Just run <i>make</i> to compile it and then <i>./bin/filewatcher</i>.
 ```
 Usage: ./bin/filewatcher [OPTIONS]
   -f, --file            Set a file to filter
-  -h, --process         Set a process name to filter
+  -p, --process         Set a process name to filter
   -a, --all             Display all events (By default only basic events like open/read/write are displayed)
   -d, --debug           Enable debugging messages to be saved into a file
   -h, --help            Print this help and exit

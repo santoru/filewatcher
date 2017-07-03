@@ -89,7 +89,7 @@ void usage(char* arg) {
     printf("\n");
     printf("Usage: %s [OPTIONS]\n", arg);
     printf("  -f, --file                 Set a file to filter\n");
-    printf("  -h, --process              Set a process name to filter\n");
+    printf("  -p, --process              Set a process name to filter\n");
     printf("  -a, --all                  Display all events (By default only basic events like open/read/write are displayed)\n");
     printf("  -d, --debug                Enable debugging messages to be saved into a file\n");
     printf("  -h, --help                 Print this help and exit\n");
