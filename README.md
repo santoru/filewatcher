@@ -5,7 +5,7 @@ Filewatcher is an auditing and monitoring utility for macOS.
 
 It can audit all events from the system auditpipe of macOS and filter them by process or by file.
 
-If you want to read more about how it works, [check my blog](https://m3liot.github.io/blog).
+If you want to read more about how it works, [check my blog](https://m3liot.github.io/).
 
 
 ### Installation
