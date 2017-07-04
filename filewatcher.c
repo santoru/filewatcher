@@ -38,10 +38,10 @@ extern bool verbose;
 int main(int argc, char** argv) {
     signal(SIGINT, shutDown);
 
-    banner();
     output = OUT;
     error = ERR;
     debug = OFF;
+    banner();
 
     if(!isRoot()) {
         fprintf(output, "This software must be run as root.\n");
