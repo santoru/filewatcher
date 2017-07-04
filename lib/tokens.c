@@ -24,6 +24,7 @@
  *
  */
 
+#include "common.h"
 #include "tokens.h"
 
 void printEvent(struct auditEvent currentEvent) {
