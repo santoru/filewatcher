@@ -1,6 +1,6 @@
 fresh:
 	mkdir -p bin
-	-cd lib && rm *.gch
+	-cd lib && rm -f *.gch
 	gcc -lbsm filewatcher.c lib/*.c -o bin/filewatcher
 
 clean:
