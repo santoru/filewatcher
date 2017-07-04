@@ -75,23 +75,24 @@ void printEvent(struct auditEvent currentEvent) {
                 currentEvent.processPid,
                 currentEvent.processPath
             );
-        }
     }
-    char* getEventType(int event) {
-        switch (event) {
-            case 1:
-                return "exit";
-            case 14:
-                return "access";
-            case 22:
-                return "readlink";
-            case 72:
-                return "open/read";
-            case 112:
-                return "close";
-        }
-        if (showAll) {
-            return "N/A";
-        }
-        return "hide";
+}
+
+char* getEventType(int event) {
+    switch (event) {
+        case 1:
+            return "exit";
+        case 14:
+            return "access";
+        case 22:
+            return "readlink";
+        case 72:
+            return "open/read";
+        case 112:
+            return "close";
     }
+    if (showAll) {
+        return "N/A";
+    }
+    return "hide";
+}
