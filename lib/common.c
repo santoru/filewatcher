@@ -106,9 +106,9 @@ char* getCurrentTime() {
 }
 
 void banner() {
-    printf("\n");
-    printf("filewatcher - a simple auditing utility for macOS\n");
-    printf("\n");
+    fprintf(output, "\n");
+    fprintf(output, "filewatcher - a simple auditing utility for macOS\n");
+    fprintf(output, "\n");
 }
 
 void shutDown(){
