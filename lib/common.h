@@ -88,6 +88,7 @@ char* getPathArg(char * processPath, int value);
 char* getProcFromPid (pid_t pid);
 char* getCurrentTimestamp();
 char* getCurrentTime();
+char* getEventString(int event);
 
 void banner();
 void shutDown();

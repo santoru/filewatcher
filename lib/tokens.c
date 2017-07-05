@@ -60,7 +60,7 @@ void printEvent(struct auditEvent currentEvent) {
 
             fprintf(
                 debug,
-                "%s - tokens.c - [%s] Detected %s event from %s -> %s -",
+                "%s - tokens.c - [%s] Detected %s event from %s -> %s - ",
                 getCurrentTimestamp(),
                 currentEvent.username,
                 event,
@@ -92,7 +92,7 @@ char* getEventType(int event) {
             return "close";
     }
     if (showAll) {
-        return "N/A";
+        return getEventString(event);
     }
     return "hide";
 }

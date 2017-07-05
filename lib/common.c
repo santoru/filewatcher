@@ -116,3 +116,46 @@ void shutDown(){
     fprintf(output, "\nExiting...\n");
     exit(0);
 }
+
+bool startsWith(const char *pre, const char *str) {
+    size_t lenpre = strlen(pre),
+           lenstr = strlen(str);
+    return lenstr < lenpre ? false : strncmp(pre, str, lenpre) == 0;
+}
+
+char* getEventString(int event){
+    char ev[15];
+    sprintf(ev, "%d", event);
+    FILE * fp;
+    char * line = NULL;
+    size_t len = 0;
+    ssize_t read;
+
+    fp = fopen("/etc/security/audit_event", "r");
+    if (fp == NULL)
+        return "N/A";
+
+    while ((read = getline(&line, &len, fp)) != -1) {
+        //Getting the line of the event.
+        if (startsWith(ev, line)) {
+            fprintf(debug,
+                "%s - (Event: %i) Found line : %s\n",
+                getCurrentTimestamp(), event, line);
+            //Parsing the line to return only the event human-readable.
+            //TODO: Make this ugly code here better!
+            char* segment = strtok(line, ":");
+            segment = strtok(0, ":");
+            segment = strtok(0, ":");
+            //Eliminating the content after "(" to return a nicer output
+            char *p = strchr(segment, '(');
+            if (!p){
+                fclose(fp);
+                return segment;
+            }
+            *p = 0;
+            fclose(fp);
+            return segment;
+        }
+    }
+    return "N/A";
+}
