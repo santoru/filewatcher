@@ -53,7 +53,7 @@ char* getPathArg(char * path, int value){
     // I want last token, no need to use strtok()
     if (value == 0) {
         segment = strrchr(path, '/');
-        segment = segment+1;
+        segment = (segment)?(segment+1):"";
     }
     else {
         // I want paramenter number value, using strtok()
