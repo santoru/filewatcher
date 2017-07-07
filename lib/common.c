@@ -131,7 +131,7 @@ char* getEventString(int event){
     size_t len = 0;
     ssize_t read;
 
-    fp = fopen("/etc/security/audit_event", "r");
+    fp = fopen(AUDIT_EVENT_FILE, "r");
     if (fp == NULL)
         return "N/A";
 
