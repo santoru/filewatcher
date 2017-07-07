@@ -48,15 +48,26 @@ void printEvent(struct auditEvent currentEvent) {
             }
 
             //TODO: find a better way to use these colors :/
-            fprintf(
-                output,
-                "%s ["C_CYAN"%s"C_RESET"] Detected "C_YELLOW"%s"C_RESET" event from "C_GREEN"%s"C_RESET" -> %s\n",
-                getCurrentTime(),
-                currentEvent.username,
-                event,
-                getPathArg(strdup(currentEvent.processPath), 0),
-                currentEvent.filePath
-            );
+            if (currentEvent.filePath != NULL) {
+                fprintf(
+                    output,
+                    "%s ["C_CYAN"%s"C_RESET"] Detected "C_YELLOW"%s"C_RESET" event from "C_GREEN"%s"C_RESET" -> %s\n",
+                    getCurrentTime(),
+                    currentEvent.username,
+                    event,
+                    getPathArg(strdup(currentEvent.processPath), 0),
+                    currentEvent.filePath
+                );
+            } else {
+                fprintf(
+                    output,
+                    "%s ["C_CYAN"%s"C_RESET"] Detected "C_YELLOW"%s"C_RESET" event from "C_GREEN"%s"C_RESET"\n",
+                    getCurrentTime(),
+                    currentEvent.username,
+                    event,
+                    getPathArg(strdup(currentEvent.processPath), 0)
+                );
+            }
 
             fprintf(
                 debug,
