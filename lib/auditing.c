@@ -38,6 +38,7 @@ tokenstr_t token;
 
 struct auditEvent getEvent(FILE* auditFile) {
     struct auditEvent curr;
+    memset(&curr, 0, sizeof(curr));
 
     recordLength = au_read_rec(auditFile, &buffer);
     if (recordLength == -1) {
