@@ -9,9 +9,9 @@ You can use this utility to:
  - Monitor activity of a process, and which resources are accessed by that process.
  - Build a small Host-Based IDS by monitoring access or modifications to specific files.
  - Do an dynamic malware analysis by monitoring what the malware is using on the filesystem.
-  
 
-If you want to read more about how it works, [check my blog](https://m3liot.github.io/).
+
+If you want to read more about how it works, [check my blog](https://m3liot.github.io/2017/07/02/mac-os-real-time-auditing/).
 
 
 ### Installation
