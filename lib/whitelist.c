@@ -25,9 +25,12 @@
  *
  */
 
- #include "whitelist.h"
+#include "whitelist.h"
 
 bool raiseAlertForFile(char* filePath) {
+    if (filePath == NULL) {
+        filePath = "";
+    }
     if (fileFilter != NULL) {
         if (!strcasestr(filePath, fileFilter)) {
             return false;
