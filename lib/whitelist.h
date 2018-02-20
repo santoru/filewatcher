@@ -1,6 +1,6 @@
 /**
  * filewatcher - a simple auditing utility for macOS
- * Copyright (C) 2017 m3liot
+ * Copyright (C) 2017 meliot
  *
  * This file is part of filewatcher.
  *
