@@ -46,7 +46,10 @@ void parseArguments(int argc, char** argv){
     while ((c = getopt_long(argc, argv, short_opt, long_opt, NULL)) != -1) {
         switch (c) {
             case 'f':
-                fileFilter = optarg;
+                if ((fileFilter = realpath(optarg, NULL)) == NULL) {
+                    fileFilter = optarg;
+                }
+
                 fprintf(output, "Filtering by file.. ("C_CYAN"%s"C_RESET")\n", fileFilter);
                 break;
             case 'p':
