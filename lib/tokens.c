@@ -55,7 +55,7 @@ void printEvent(struct auditEvent currentEvent) {
                     getCurrentTime(),
                     currentEvent.username,
                     event,
-                    getPathArg(strdup(currentEvent.processPath), 0),
+                    basename(strdup(currentEvent.processPath)),
                     currentEvent.filePath
                 );
             } else {
@@ -65,7 +65,7 @@ void printEvent(struct auditEvent currentEvent) {
                     getCurrentTime(),
                     currentEvent.username,
                     event,
-                    getPathArg(strdup(currentEvent.processPath), 0)
+                    basename(strdup(currentEvent.processPath))
                 );
             }
 
@@ -75,7 +75,7 @@ void printEvent(struct auditEvent currentEvent) {
                 getCurrentTimestamp(),
                 currentEvent.username,
                 event,
-                getPathArg(strdup(currentEvent.processPath), 0),
+                basename(strdup(currentEvent.processPath)),
                 currentEvent.filePath
             );
 

@@ -25,16 +25,23 @@
 
 #ifndef COMMON_H
 #define COMMON_H
+
+#ifdef __FreeBSD__
+# define _WITH_GETLINE
+# include <sys/types.h>
+# include <sys/user.h>
+# include <libutil.h>
+#endif
+
+#include <bsm/libbsm.h>
+#include <sys/ioctl.h>
+#include <libgen.h>
+#include <sys/syslimits.h>
+
 #include <stdio.h>
 #include <stdlib.h>
-//#include <arpa/inet.h>
-//#include <bsm/audit.h>
-#include <bsm/libbsm.h>
-//#include <bsm/audit_kevents.h>
-#include <sys/ioctl.h>
-//#include <sys/types.h>
 #include <security/audit/audit_ioctl.h>
-//#include <stdbool.h>
+#include <stdbool.h>
 #include <string.h>
 #include <errno.h>
 #include <libproc.h>
@@ -45,9 +52,9 @@
 
 
 #define OUT stdout
-#define ERR fopen("log/error.log", "a+")
+#define ERR fopen("error.log", "a+")
 #define OFF fopen("/dev/null", "w");
-#define DBG fopen("log/debug.log", "a+");
+#define DBG fopen("debug.log", "a+");
 
 //Put some colors on these outputs :D
 #define C_RED     "\x1b[31m"
@@ -61,7 +68,8 @@
 
 #define HOMEDIR getenv("HOME")
 
-char pathbuf[PROC_PIDPATHINFO_MAXSIZE];
+char pathbuf[PATH_MAX];
+
 char timebuff[26];
 char hourbuff[26];
 
@@ -84,7 +92,6 @@ struct auditEvent {
 };
 
 bool isRoot();
-char* getPathArg(char * processPath, int value);
 char* getProcFromPid (pid_t pid);
 char* getCurrentTimestamp();
 char* getCurrentTime();

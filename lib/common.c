@@ -23,7 +23,7 @@
  *
  */
 
- #include "common.h"
+#include "common.h"
 
 /*
  * Function: isRoot
@@ -41,42 +41,12 @@ bool isRoot() {
 }
 
 /*
- * Function: getPathArg
- * ----------------
- * Split a path in pieces and return the element asked from "value".
- * value = 0 return the last token.
- *
- */
-char* getPathArg(char * path, int value){
-    char * pathDelimiter = "/";
-    char * segment;
-    // I want last token, no need to use strtok()
-    if (value == 0) {
-        segment = strrchr(path, '/');
-        segment = (segment)?(segment+1):"";
-    }
-    else {
-        // I want paramenter number value, using strtok()
-        segment = strtok(path, pathDelimiter);
-        value--;
-
-        while(value > 0) {
-            segment = strtok(0, pathDelimiter);
-            value--;
-        }
-    }
-    if (segment != NULL){
-        return segment;
-    }
-    return "";
-}
-
-/*
  * Function: getProcFromPid
  * ----------------
  * Return the effective process path from its pid
  */
 char* getProcFromPid (pid_t pid) {
+#ifdef __APPLE__
     int ret = proc_pidpath(pid, pathbuf, sizeof(pathbuf));
     if ( ret <= 0 ) {
         fprintf(error, "[!] PID %d: proc_pidpath ();\n", pid);
@@ -84,6 +54,17 @@ char* getProcFromPid (pid_t pid) {
     } else {
         return pathbuf;
     }
+#elif defined(__FreeBSD__)
+    struct kinfo_proc *proc = kinfo_getproc(pid);
+    if ( proc == NULL ) {
+        fprintf(error, "[!] PID %d: kinfo_getproc ();\n", pid);
+        fprintf(error, "    %s\n", strerror(errno));
+    } else {
+        memcpy(pathbuf, proc->ki_comm, sizeof(pathbuf));
+        free(proc);
+        return pathbuf;
+    }
+#endif
     return "";
 }
 

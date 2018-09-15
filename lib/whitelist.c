@@ -67,7 +67,7 @@ bool raiseAlertForProcess(char * processPath) {
 
 
 bool isWhiteList(char* path) {
-    char * processName = getPathArg(strdup(path), 0);
+    char * processName = basename(strdup(path));
     /* TODO: Design a better white list :D */
     char * whiteListProcess [] = {
 /*
