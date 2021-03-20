@@ -11,7 +11,7 @@ You can use this utility to:
  - Do an dynamic malware analysis by monitoring what the malware is using on the filesystem.
 
 
-If you want to read more about how it works, [check my blog](https://meliot.me/2017/07/02/mac-os-real-time-auditing/).
+If you want to read more about how it works, [check my blog](https://insecurity.blog/2017/07/02/mac-os-real-time-auditing/).
 
 
 ### Installation
